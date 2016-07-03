@@ -20,14 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\src\main.cpp" />
-    <ClCompile Include="src\src\scrapeNparse.cpp" />
     <ClCompile Include="src\src\statistics.cpp" />
     <ClCompile Include="src\src\timeFSM.cpp" />
     <ClCompile Include="src\src\WWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\include\monitor.h" />
-    <ClInclude Include="src\include\scrapeNparse.h" />
     <ClInclude Include="src\include\statistics.h" />
     <ClInclude Include="src\include\timeFSM.h" />
     <ClInclude Include="src\include\WWindow.h" />
