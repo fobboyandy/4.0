@@ -20,12 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\src\main.cpp" />
+    <ClCompile Include="src\src\scrapeNparse.cpp" />
     <ClCompile Include="src\src\statistics.cpp" />
     <ClCompile Include="src\src\timeFSM.cpp" />
     <ClCompile Include="src\src\WWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\monitor.h" />
+    <ClInclude Include="src\include\scrapeNparse.h" />
     <ClInclude Include="src\include\statistics.h" />
     <ClInclude Include="src\include\timeFSM.h" />
     <ClInclude Include="src\include\WWindow.h" />
@@ -83,7 +85,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Users\fobboyandy\Desktop\4.0\4.0\src\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Users\fobboyandy\Desktop\4.0\4.0\src\libcurl\include\curl;D:\Users\fobboyandy\Desktop\4.0\4.0\src\include;$(IncludePath)</IncludePath>
     <SourcePath>D:\Users\fobboyandy\Desktop\4.0\4.0\src\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
