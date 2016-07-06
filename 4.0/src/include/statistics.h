@@ -2,6 +2,16 @@
 #define statistics_h
 #include "timeFSM.h"
 #include <time.h>
+#include <unordered_map>
+#include <curl.h>
+#include <string>
+using std::string;
+using std::unordered_map;
+
+string scrape(string topic)
+{
+	string wiki_url = "https://en.wikipedia.org/wiki/" + topic;
+}
 
 //used to store, manage, and calculate data
 class statistics
