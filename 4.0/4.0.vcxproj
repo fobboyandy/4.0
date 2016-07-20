@@ -22,11 +22,15 @@
     <ClCompile Include="src\src\main.cpp" />
     <ClCompile Include="src\src\statistics.cpp" />
     <ClCompile Include="src\src\timeFSM.cpp" />
+    <ClCompile Include="src\src\wikipedia_functions.cpp" />
+    <ClCompile Include="src\src\word.cpp" />
     <ClCompile Include="src\src\WWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\statistics.h" />
     <ClInclude Include="src\include\timeFSM.h" />
+    <ClInclude Include="src\include\wikipedia_functions.h" />
+    <ClInclude Include="src\include\word.h" />
     <ClInclude Include="src\include\WWindow.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
