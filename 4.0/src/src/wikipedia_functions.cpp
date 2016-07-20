@@ -1,5 +1,6 @@
 #include "wikipedia_functions.h"
-
+#include <unordered_map>
+using namespace std;
 
 size_t wikipedia_functions::writeCallback(char* buf, size_t size, size_t nmemb, void* up)
 { //callback must have this declaration
@@ -43,4 +44,22 @@ string wikipedia_functions::remove_tags(string html_source)
 			buffer.push_back(html_source[i]);
 	}
 	return buffer;
+}
+
+unordered_map<string, int> wikipedia_functions::word_sort(string raw_content)
+{
+	unordered_map<string, int> frequency_dictionary;
+	string word;
+	for (size_t i = 0; i < raw_content.length(); i++)
+	{
+		if (raw_content[i] != ' ')//if not a space then push into word
+			word.push_back(raw_content[i]);
+		else //store word into dictionary for each space, clear word after each space
+		{
+			if(wikipedia_functions::filter[word]) //use a filter to filter out articles and common words
+
+			frequency_dictionary[word]++;
+			word.clear();
+		}
+	}
 }
