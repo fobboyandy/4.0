@@ -22,7 +22,6 @@ void statistics::update()
 		efficiency = ((total_seconds - unproductive_seconds) * 100) / total_seconds;
 }
 
-
 int statistics::get_efficiency() { return efficiency; };
 int statistics::get_total_seconds() { return total_seconds; };
 int statistics::get_unproductive_seconds() { return unproductive_seconds; };

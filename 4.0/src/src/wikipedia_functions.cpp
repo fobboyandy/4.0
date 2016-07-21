@@ -2,6 +2,11 @@
 #include <unordered_map>
 using namespace std;
 
+unordered_map<string, bool> wikipedia_functions::filter = { { "the",false },{ "of",false },{ "an",false } ,{ "a",false } ,{ "as",false } ,{ "at",false } ,{ "but",false } ,{ "by",false } ,{ "in",false } ,{ "from",false } ,{ "off",false } ,{ "on",false } ,{ "than",false } ,{ "with",false },{ "to",false } };
+
+
+
+string wikipedia_functions::content;
 size_t wikipedia_functions::writeCallback(char* buf, size_t size, size_t nmemb, void* up)
 { //callback must have this declaration
   //buf is a pointer to the data that curl has for us
@@ -11,7 +16,7 @@ size_t wikipedia_functions::writeCallback(char* buf, size_t size, size_t nmemb, 
 		wikipedia_functions::content.push_back(buf[c]);
 	return size*nmemb; //tell curl how many bytes we handled
 }
-void wikipedia_functions::scrape(string topic)
+string wikipedia_functions::scrape(string topic)
 {
 	wikipedia_functions::content.clear(); //clears content before using
 	CURL* curl; //our curl object
@@ -25,6 +30,7 @@ void wikipedia_functions::scrape(string topic)
 	curl_easy_perform(curl);
 	curl_easy_cleanup(curl);
 	curl_global_cleanup();
+	return wikipedia_functions::content;
 }
 
 string wikipedia_functions::remove_tags(string html_source)
@@ -46,20 +52,31 @@ string wikipedia_functions::remove_tags(string html_source)
 	return buffer;
 }
 
-unordered_map<string, int> wikipedia_functions::word_sort(string raw_content)
+unordered_map<string, int> wikipedia_functions::word_sort(string html_content)
 {
 	unordered_map<string, int> frequency_dictionary;
 	string word;
-	for (size_t i = 0; i < raw_content.length(); i++)
+	word.clear();
+	for (size_t i = 0; i < html_content.length(); i++)
 	{
-		if (raw_content[i] != ' ')//if not a space then push into word
-			word.push_back(raw_content[i]);
-		else //store word into dictionary for each space, clear word after each space
+		if ((html_content[i] >= '0' && html_content[i] <= '9') || (html_content[i] >= 'a' && html_content[i] <= 'z') || (html_content[i] >= 'A' && html_content[i] <= 'Z') || html_content[i] == '-') //is forming a word
 		{
-			if(wikipedia_functions::filter[word]) //use a filter to filter out articles and common words
-
-			frequency_dictionary[word]++;
+			word.push_back(tolower(html_content[i])); //capture character
+		}
+		else if (html_content[i] == '<')
+		{
+			while (html_content[i] != '>')
+				i++;
+		}
+		else //word terminated by non character
+		{
+			if (filter.find(word) == filter.end()) //not a filler word
+				frequency_dictionary[word]++;
 			word.clear();
 		}
 	}
+	for (auto it = frequency_dictionary.begin(); it != frequency_dictionary.end(); it++)
+		if (it->second < 5)
+			frequency_dictionary.erase(it->first);
+	return frequency_dictionary;
 }

@@ -1,21 +1,20 @@
 #ifndef wikipedia_functions_h
 #define wikipedia_functions_h
 
-#include <iostream>
-#include <fstream>
 #include <string>
 #include <unordered_map>
 #include <curl.h> //your directory may be different
-#include <list>
 using namespace std;
+
 
 namespace wikipedia_functions
 {
-	std::string content; //will hold the url's html content
+	extern string content; //will hold the url's html content
+	extern unordered_map<string, bool> filter;
 	size_t writeCallback(char* buf, size_t size, size_t nmemb, void* up);
-	void scrape(string topic);
+	string scrape(string topic);
 	string remove_tags(string html_source);
-	unordered_map<string, int> word_sort(string raw_content);
+	unordered_map<string, int> word_sort(string html_content);
 }
 
 #endif

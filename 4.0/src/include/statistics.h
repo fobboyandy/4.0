@@ -2,16 +2,11 @@
 #define statistics_h
 #include "timeFSM.h"
 #include <time.h>
-#include <unordered_map>
-#include <curl.h>
 #include <string>
-using std::string;
+#include "word.h"
+#include <unordered_map>
 using std::unordered_map;
-
-string scrape(string topic)
-{
-	string wiki_url = "https://en.wikipedia.org/wiki/" + topic;
-}
+using std::string;
 
 //used to store, manage, and calculate data
 class statistics
@@ -28,6 +23,7 @@ public:
 	int get_efficiency();
 	int get_total_seconds();
 	int get_unproductive_seconds();
+
 	void update();
 
 private:

@@ -1,6 +1,4 @@
 ﻿  word.cpp
-  statistics.cpp
-  main.cpp
+  wikipedia_functions.cpp
   Generating Code...
-d:\users\fobboyandy\desktop\4.0\4.0\src\include\statistics.h(14): error C4716: 'scrape': must return a value
-d:\users\fobboyandy\desktop\4.0\4.0\src\include\statistics.h(14): error C4716: 'scrape': must return a value
+  4.0.vcxproj -> D:\Users\fobboyandy\Desktop\4.0\Debug\4.0.exe
