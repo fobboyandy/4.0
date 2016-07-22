@@ -16,7 +16,7 @@ size_t wikipedia_functions::writeCallback(char* buf, size_t size, size_t nmemb, 
 		wikipedia_functions::content.push_back(buf[c]);
 	return size*nmemb; //tell curl how many bytes we handled
 }
-string wikipedia_functions::scrape(string topic)
+string wikipedia_functions::scrape(wstring topic)
 {
 	wikipedia_functions::content.clear(); //clears content before using
 	CURL* curl; //our curl object
@@ -24,7 +24,10 @@ string wikipedia_functions::scrape(string topic)
 	curl_global_init(CURL_GLOBAL_ALL); //pretty obvious
 	curl = curl_easy_init();
 
-	curl_easy_setopt(curl, CURLOPT_URL, "https://en.wikipedia.org/wiki/" + topic);
+	std::string s_topic((const char*)&topic[0], sizeof(wchar_t) / sizeof(char)*topic.size()); //conversion to string
+
+
+	curl_easy_setopt(curl, CURLOPT_URL, "https://en.wikipedia.org/wiki/" + s_topic);
 	curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &wikipedia_functions::writeCallback);
 	curl_easy_perform(curl);

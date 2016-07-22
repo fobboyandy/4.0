@@ -39,7 +39,7 @@ LRESULT CALLBACK myProcedure(
 	_In_ LPARAM lParam
 	)
 {
-	main_stats.update();//update all stats
+	//main_stats.analyze();//update all stats
 	total_seconds = main_stats.get_total_seconds();
 	total_seconds_string = std::to_wstring(total_seconds);
 
@@ -73,7 +73,7 @@ LRESULT CALLBACK myProcedure(
 		//paintfunctions::time_TextOut(hdc, 200, 100, efficiency_string, efficiency);
 
 		HWND active_hwnd = GetForegroundWindow(); // get handle of currently active window
-		int current_str_len = GetWindowText(active_hwnd, wnd_title, sizeof(wnd_title) / sizeof(wnd_title[0])); //repaint window if new string is shorter
+		int current_str_len = GetWindowText(active_hwnd, wnd_title, 256); //repaint window if new string is shorter
 
 		if (current_str_len < previous_str_len) //force repaint background
 			InvalidateRect(hwnd, NULL, true);
